@@ -58,30 +58,3 @@ enum embed_constants_
 #define MIN(A,B) ((A)<(B)?(A):(B))
 #define MAX(A,B) ((A)>(B)?(A):(B))
 #endif
-
-/* 缓冲区结构 */ /*  buffer structure */
-typedef struct 
-{
-	long			max_buf_size ;
-	long			buf_size ;
-	char			*bufbase ;
-	char			*bufptr ;
-	long			buf_remain_len ;
-}data_buff_t;
-
-#define OFFSET_DBUFPTR(_buf_,_offset_len_) \
-	if( _offset_len_ != -1 ) \
-	{ \
-		(_buf_)->bufptr += _offset_len_ ; \
-		(_buf_)->buf_remain_len -= _offset_len_ ; \
-	}
-
-#define DATA_BUFF_INIT(_data_buf_, _buf_base_, _buf_len_) \
-    do {\
-       (_data_buf_)->buf_size = _buf_len_; \
-       (_data_buf_)->bufbase = _buf_base_; \
-       (_data_buf_)->bufptr = _buf_base_;  \
-       (_data_buf_)->buf_remain_len = _buf_len_;\
-    }while(0)\
-
-#endif
